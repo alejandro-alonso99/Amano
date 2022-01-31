@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% load purchase_extras %}
+
+{% block content %}
+
+{% for purchase in purchases %}
+<h1> {{ purchase.proveedor }} </h1>
+<h1> {{ purchase.calculate_total | currency}} </h1>
+{% endfor %}
+{% endblock %}

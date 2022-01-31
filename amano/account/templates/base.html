@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d743caab95.js" crossorigin="anonymous"></script>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    {% if request.get_full_path != '/account/login/' %}
+    <div class="navbar">
+        <a href="#home" id="nav-title">AgroCloud </a>
+        <div class="navbar-items">
+            <a href="">Resumen</a>
+            <div class="dropdown">
+
+                <button class="dropbtn">General
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="">Crear campaña</a>
+                    <a href="">Campañas</a>
+                    <a href="">Campos</a>
+                    <a href="">Agregar campo</a>
+                    <a href="">Lotes</a>
+                    <a href="">Agregar Lote</a>
+                </div>
+            </div>
+            <div class="dropdown">
+
+                <button class="dropbtn">Compras
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Compras Hacienda</a>
+                    <a href="#">Agregar Compra Hacienda</a>
+                    <a href="#">Compras Siembra</a>
+                    <a href="#">Agregar Compra Siembra</a>
+                </div>
+            </div>
+            <div class="dropdown">
+
+                <button class="dropbtn">Ventas
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="">Ventas Hacienda</a>
+                    <a href="">Agregar Venta Hacienda</a>
+                    <a href="">Ventas Siembra</a>
+                    <a href="">Agregar venta Siembra</a>
+                </div>
+            </div>
+            <div class="dropdown">
+
+                <button class="dropbtn">Siembra
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="">Precios promedio</a>
+                    <a href="">Agregar Venta Hacienda</a>
+                    <a href="">Ventas Siembra</a>
+                    <a href="">Agregar venta Siembra</a>
+                </div>
+            </div>
+            <a href="">Gastos</a>
+            <a href="">Stock</a>
+            <div class="dropdown">
+
+                <button class="dropbtn">Fondos
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="">Resumen</a>
+                    <a href="#">Caja</a>
+                    <a href="#">Banco</a>
+                    <a href="#">Cheques Propios</a>
+                    <a href="">Cheques Terceros</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block login%}
+
+    {% endblock %}
+
+</body>
+
+</html>
