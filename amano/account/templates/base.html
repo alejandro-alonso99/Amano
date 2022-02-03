@@ -1,4 +1,8 @@
 {% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load l10n %}
+{% language 'es' %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,13 +12,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d743caab95.js" crossorigin="anonymous"></script>
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
     <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
     {% if request.get_full_path != '/account/login/' %}
     <div class="navbar">
-        <a href="#home" id="nav-title">AgroCloud </a>
+        <a href="#home" id="nav-title">Amano </a>
         <div class="navbar-items">
             <a href="">Resumen</a>
             <div class="dropdown">
@@ -85,14 +92,16 @@
         </div>
     </div>
     {% endif %}
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
 
-    {% block content %}
-    {% endblock %}
-
-    {% block login%}
+    {% block login %}
 
     {% endblock %}
 
 </body>
+{% endlanguage %}
 
 </html>

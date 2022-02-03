@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'purchases.apps.PurchasesConfig',
+    'stock.apps.StockConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -75,12 +78,17 @@ WSGI_APPLICATION = 'amano.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+psqlpassword = os.environ.get('psqlpassword')
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'amano',
+        'USER': 'postgres',
+        'PASSWORD': psqlpassword,
     }
 }
+
 
 
 # Password validation
@@ -106,13 +114,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
+USE_I18N = True    
 USE_L10N = True
-
+USE_DECIMAL_SEPARATOR = True
+DECIMAL_SEPARATOR = ","
+USE_THOUSAND_SEPARATOR = True
+THOUSAND_SEPARATOR = "."
 USE_TZ = True
 
 

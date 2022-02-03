@@ -24,3 +24,6 @@ class Purchases(models.Model):
     def calculate_total(self):
 
         return int(self.cantidad) * int(self.precio_unidad)
+    
+    class Meta:
+        ordering = ('-fecha',)

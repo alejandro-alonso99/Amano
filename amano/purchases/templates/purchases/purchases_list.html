@@ -1,11 +1,110 @@
 {% extends "base.html" %}
 
-{% load purchase_extras %}
+{% load humanize %}
 
 {% block content %}
 
-{% for purchase in purchases %}
-<h1> {{ purchase.proveedor }} </h1>
-<h1> {{ purchase.calculate_total | currency}} </h1>
-{% endfor %}
+{% if query or date_query%}
+<div class="info-container">
+    <p><a href="{% url 'purchases:purchases_list' %}" id="search-btn" class="back-link"><i
+                class="fas fa-chevron-left"></i>Volver
+            a listado</a></p>
+    {% if query %}
+    <div id="list-title">
+        Filtrando por: "{{query}}"
+    </div>
+    {% endif %}
+    {% if date_query %}
+    <div id="list-title">
+        Filtrando por Fecha: "{{date_query}}"
+    </div>
+    {% endif %}
+    {% if purchases %}
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="title-client-tag">Fecha:</h2>
+            <h2 id="title-client-tag">Categoría:</h2>
+            <h2 id="title-client-tag">Proveedor:</h2>
+            <h2 id="title-client-tag">Cantidad:</h2>
+            <h2 id="title-client-tag">Producto:</h2>
+            <h2 id="title-client-tag">Precio unidad:</h2>
+            <h2 id="title-client-tag">Total:</h2>
+        </div>
+    </div>
+    {% endif %}
+    {% for purchase in purchases %}
+    <a href="{{ purchase.get_absolute_url }}">
+        <div class="movement-card">
+            <div id="card-row-1">
+                <h2 id="client-tag"> {{ purchase.fecha |date }}</h2>
+                <h2 id="client-tag">{{ purchase.categoria | capfirst}}</h2>
+                <h2 id="client-tag">{{ purchase.proveedor | capfirst}}</h2>
+                <h2 id="client-tag">{{ purchase.cantidad }}</h2>
+                <h2 id="client-tag">{{ purchase.producto | capfirst}}</h2>
+                <h2 id="client-tag">${{ purchase.precio_unidad | floatformat:2 | intcomma}}</h2>
+                <h2 id="total-tag">${{ purchase.calculate_total | floatformat:2 | intcomma}}</h2>
+            </div>
+        </div>
+    </a>
+
+    {% empty %}
+    <div id="list-title">
+        No hay resultados para la búsqueda
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="info-container">
+    <div id="top-forms">
+        <form action="." method="get" id="search-form" class="date-form">
+            {% csrf_token %}
+            <div id="search-label">
+                <i class="fas fa-calendar-alt"></i> Buscar por Fecha:
+            </div>
+            {{date_form.date_query}}
+            <input type="submit" value="Buscar" id="search-btn">
+        </form>
+        <form action="." method="get" id="search-form">
+            {% csrf_token %}
+            <div id="search-label">
+                <i class="fas fa-search"></i> Buscar por Proveedor:
+            </div>
+            {{search_form.query}}
+            <input type="submit" value="Buscar" id="search-btn">
+        </form>
+    </div>
+    <div id="list-title">
+        Historial de compras
+    </div>
+    {% if purchases %}
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="title-client-tag">Fecha:</h2>
+            <h2 id="title-client-tag">Categoría:</h2>
+            <h2 id="title-client-tag">Proveedor:</h2>
+            <h2 id="title-client-tag">Cantidad:</h2>
+            <h2 id="title-client-tag">Producto:</h2>
+            <h2 id="title-client-tag">Precio unidad:</h2>
+            <h2 id="title-client-tag">Total:</h2>
+        </div>
+    </div>
+    {% endif %}
+    {% for purchase in purchases %}
+    <a href="{{ purchase.get_absolute_url }}">
+        <div class="movement-card">
+            <div id="card-row-1">
+                <h2 id="client-tag"> {{ purchase.fecha |date }}</h2>
+                <h2 id="client-tag">{{ purchase.categoria | capfirst}}</h2>
+                <h2 id="client-tag">{{ purchase.proveedor | capfirst}}</h2>
+                <h2 id="client-tag">{{ purchase.cantidad }}</h2>
+                <h2 id="client-tag">{{ purchase.producto | capfirst}}</h2>
+                <h2 id="client-tag">${{ purchase.precio_unidad | floatformat:2 | intcomma}}</h2>
+                <h2 id="total-tag">${{ purchase.calculate_total | floatformat:2 | intcomma}}</h2>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+
 {% endblock %}

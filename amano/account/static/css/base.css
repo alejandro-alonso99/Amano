@@ -1,9 +1,33 @@
 :root{
-    --accent-color: #141a1e;
+    --main-color: #141a1e;
+    --main-lighter-color: #64646400;
+    --accent-color: #f9e9ec;
+    --search-btn-color: #2445ff;
+    --red-accent-color:#f50004;
 }
 
 body{
-  background-color: var(--accent-color);
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+#content{
+  margin-left: 10vw;
+  margin-right: 10vw;
+  padding: 10px 0;
+  width: 80vw;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none !important;
+  color: #141a1e;
 }
 
 /*---------------nav----------------*/
@@ -12,6 +36,7 @@ body{
     overflow: hidden;
     background-color: #232230;
     height: fit-content;
+    box-shadow: -4px -5px 45px 3px rgba(0, 0, 0, 0.5);
   }
   
   .navbar-items {
@@ -35,11 +60,12 @@ body{
     text-align: center;
     font-size: 0.9vw;
     font-weight: 600;
-    color: #232230;
-    background-color: #63ff9b;
+    color: var(--main-color);
+    background-color: var(--accent-color);
     text-align: center;
     padding: 14px 0;
     text-decoration: none;
+    box-shadow: -4px -5px 45px 3px rgba(0, 0, 0, 0.35);
   }
   
   /* The dropdown container */
@@ -63,7 +89,7 @@ body{
   /* Add a red background color to navbar links on hover */
   .navbar a:hover,
   .dropdown:hover .dropbtn {
-    background-color: #63ff9b;
+    background-color: var(--accent-color);
     color: #232230;
   }
   
@@ -80,7 +106,7 @@ body{
   /* Links inside the dropdown */
   .dropdown-content a {
     float: none;
-    color: #232230;
+    color: var(--main-color);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -98,4 +124,148 @@ body{
   }
 
 /*---------------nav----------------*/
+
+/*--------------lists---------------*/
+
+.info-container {
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+#wrapper {
+  width: 100%;
+  height: fit-content;
+  margin: 20px 0px;
+  border: 2px solid rgb(177, 177, 177);
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 5px 15px;
+  border-radius: 5px;
+  padding: 20px 0;
+}
+
+
+.title-movement-card {
+  padding: 0 30px;
+  height: fit-content;
+  background-color: transparent;
+  font-size: 0.8vw;
+  color: #232230;
+}
+
+.movement-card {
+  padding: 0 30px;
+  height: fit-content;
+  background-color: transparent;
+  transition: all 0.5s;
+}
+
+.movement-card:hover {
+  cursor: pointer;
+  background-color: rgb(177, 177, 177);
+}
+
+#card-row-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  padding: 7px;
+  border-bottom: 1px solid rgb(177, 177, 177);
+}
+
+#title-client-tag {
+  width: 20%;
+  font-size: 1vw;
+  font-weight: bolder;
+  text-align: center;
+  padding: 5px 0;
+}
+
+#client-tag {
+  font-weight: normal;
+  font-size: 1vw;
+  width: 20%;
+  text-align: center;
+  padding: 5px 0;
+}
+
+#total-tag{
+  font-size: 1vw;
+  font-weight: normal;
+  width: 20%;
+  text-align: center;
+  color: #f50004;
+  padding: 5px 0;
+}
+
+#list-title {
+  text-align: center;
+  font-size: 1vw;
+  margin: 30px 0;
+  background-color: #fff;
+  color: #232230;
+  padding: 10px;
+  border: 2px solid rgb(177, 177, 177);
+  border-radius: 5px;
+}
+
+#search-form{
+  margin-top: 20px;
+}
+
+#search-form div {
+  margin-bottom: 10px;
+}
+
+#search-btn{
+  font-size: 0.9vw;
+  border: none !important;
+  padding: 7px 10px;
+  background-color: var(--search-btn-color);
+  border-radius: 5px;
+  color: #fff;
+  margin-left: 10px;
+  transition: all 0.3s;
+  outline: none !important;
+}
+
+#search-btn:hover{
+  cursor: pointer;
+  background-color: rgb(177, 177, 177);
+  color: var(--main-color);
+}
+
+#search-form input{
+  font-size: 0.9vw;
+  padding: 7px 10px;
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: 5px;
+}
+
+#search-form input:valid{
+  outline: 1px solid var(--search-btn-color);
+}
+
+i{
+  font-size: 0.9vw;
+  margin-right: 5px;
+  text-align: center;
+}
+
+.back-link{
+  margin: 0 !important;
+}
+
+#top-forms{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+#search-label{
+  font-size: 1vw;
+}
+
+/*--------------lists---------------*/
 
