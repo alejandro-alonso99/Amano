@@ -1,4 +1,3 @@
-from random import choices
 from django.db import models
 from amano.utils import unique_slug_generator
 from django.urls import reverse

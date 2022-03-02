@@ -1,4 +1,3 @@
-from calendar import month
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Purchases
 from .forms import SearchForm, DateForm, DestroyObjectForm, PurchaseForm

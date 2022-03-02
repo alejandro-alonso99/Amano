@@ -1,4 +1,3 @@
-from tkinter.messagebox import YES
 from django.shortcuts import redirect, render
 import datetime
 from recap.models import Recap
