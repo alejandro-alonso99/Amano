@@ -1,1 +1,1 @@
-web: gunicorn amano.amano.wsgi --log-file -
+web: gunicorn amano.wsgi --log-file -
