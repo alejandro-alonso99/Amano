@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'purchases.apps.PurchasesConfig',
     'stock.apps.StockConfig',
+    'sales.apps.SalesConfig',
+    'recap.apps.RecapConfig',
     'django.contrib.humanize',
 ]
 
@@ -129,7 +131,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'account:dashboard'
+LOGIN_REDIRECT_URL = 'stock:stock_list'
 LOGIN_URL = 'account:login'
 LOGOUT_URL = 'account:logout'
 

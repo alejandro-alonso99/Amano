@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %} Crear venta {% endblock %}
+
+{% block content %}
+
+<div class="info-container">
+    {% if sale_form %}
+    <div id="list-title">
+        Crear venta
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div id="form-wrapper">
+            <div id="wrapper">
+                <div class="create-section">
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-user"></i>Cliente:</h3>
+                        <h2 id="title-client-tag">{{sale_form.cliente}}</h2>
+                    </div>
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-mug-hot"></i>Producto:</h3>
+                        <h2 id="title-client-tag">{{sale_form.product}}</h2>
+                    </div>
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-clone"></i>Tipo:</h3>
+                        <h2 id="title-client-tag">{{sale_form.tipo}}</h2>
+                    </div>
+                </div>
+                <div class="create-section">
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-plus"></i>Cantidad:</h3>
+                        <h2 id="title-client-tag">{{sale_form.cantidad}}</h2>
+                    </div>
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-location-dot"></i>Localidad:
+                        </h3>
+                        <h2 id="title-client-tag">{{sale_form.localidad}}</h2>
+                    </div>
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-file"></i>Descripción:</h3>
+                        <h2 id="title-client-tag">{{sale_form.descripcion}}</h2>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Crear" id="create-btn">
+        </div>
+
+    </form>
+    {% else %}
+
+    <h1>No tiene productos registrados, registre un producto para crear una venta. </h1>
+
+    {% endif %}
+</div>
+
+{% endblock %}

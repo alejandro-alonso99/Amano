@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %}Resumenes Mensuales{% endblock%}
+
+{% block content %}
+<div class="info-container">
+    {% for recap in recaps %}
+    {% if recap.get_total_sales %}
+    <div id="detail-wrapper">
+        <div id="list-recap-title">{{recap}}</div>
+        <div class="title-movement-card">
+            <div id="card-row-1">
+                <h2 id="title-client-tag">Cantidad Ventas:</h2>
+                <h2 id="title-client-tag">Ingresos por Ventas:</h2>
+                <h2 id="title-client-tag">Días Trabajados:</h2>
+                <h2 id="title-client-tag">Ventas blanco:</h2>
+                <h2 id="title-client-tag">Ventas pintadas:</h2>
+                <h2 id="title-client-tag">Piezas por día:</h2>
+                <h2 id="title-client-tag">Promedio por venta:</h2>
+                <h2 id="title-client-tag">Facturación diaria:<h2>
+            </div>
+        </div>
+        <div class="title-movement-card">
+            <div id="card-row-1">
+                <h2 id="client-tag">{{recap.get_total_sales }}
+                    <h2 id="client-tag">${{recap.get_total_income | intcomma}}</h2>
+                    <h2 id="client-tag">{{ recap.dias_trabajados }}</h2>
+                    <h2 id="client-tag">{{ recap.get_whites }}</h2>
+                    <h2 id="client-tag">{{ recap.get_painted }}</h2>
+                    <h2 id="client-tag">{{ recap.get_piece_per_day | intcomma}}</h2>
+                    <h2 id="total-tag">${{ recap.get_avg_per_sale | intcomma}}</h2>
+                    <h2 id="total-tag">${{ recap.get_avg_per_day | intcomma}}</h2>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

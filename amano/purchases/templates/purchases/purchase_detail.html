@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %}Detalle de compra{% endblock %}
+
+{% block content %}
+<h1 id="list-title">Viendo compra: {{purchase}}</h1>
+<div class="info-container">
+    <div id="detail-wrapper">
+        <div class="title-movement-card">
+            <div id="card-row-1">
+                <h2 id="title-client-tag">Fecha:</h2>
+                <h2 id="title-client-tag">Proveedor:</h2>
+                <h2 id="title-client-tag">Producto:</h2>
+                <h2 id="title-client-tag">Cantidad:</h2>
+                <h2 id="title-client-tag">Categoría:</h2>
+                <h2 id="title-client-tag">Descripción:</h2>
+                <h2 id="title-client-tag">Precio x unidad:</h2>
+                <h2 id="title-client-tag">Total:</h2>
+            </div>
+        </div>
+        <div class="title-movement-card">
+            <div id="card-row-1">
+                <h2 id="client-tag">{{ purchase.fecha.day }} / {{ purchase.fecha.month }} / {{ purchase.fecha.year }}
+                </h2>
+                <h2 id="client-tag">{{ purchase.proveedor | capfirst }}</h2>
+                <h2 id="client-tag">{{ purchase.producto | capfirst }}</h2>
+                <h2 id="client-tag">{{ purchase.cantidad }}</h2>
+                <h2 id="client-tag">{{ purchase.producto.categoria | capfirst}}</h2>
+                <h2 id="client-tag">{{ purchase.descripcion | capfirst}}</h2>
+                <h2 id="total-tag">${{ purchase.precio_unidad | floatformat:2 | intcomma}}</h2>
+                <h2 id="total-tag">${{ purchase.calculate_total | floatformat:2 | intcomma}}</h2>
+            </div>
+        </div>
+    </div>
+    <form method="post" onsubmit="return confirm('Confirme para eliminar la compra')">
+        {% csrf_token %}
+        {{ detroy_object_form.field.as_hidden }}
+        <input type="submit" id="delete-btn" value="Eliminar Compra">
+    </form>
+</div>
+{% endblock %}

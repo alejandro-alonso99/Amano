@@ -4,7 +4,7 @@
 
 {% block content %}
 
-{% if query or date_query%}
+{% if query or date_query_end %}
 <div class="info-container">
     <p><a href="{% url 'purchases:purchases_list' %}" id="search-btn" class="back-link"><i
                 class="fas fa-chevron-left"></i>Volver
@@ -14,9 +14,9 @@
         Filtrando por: "{{query}}"
     </div>
     {% endif %}
-    {% if date_query %}
+    {% if date_query_start %}
     <div id="list-title">
-        Filtrando por Fecha: "{{date_query}}"
+        Filtrando entre Fechas: "{{date_query_start}}" y "{{date_query_end}}"
     </div>
     {% endif %}
     {% if purchases %}
@@ -37,7 +37,7 @@
         <div class="movement-card">
             <div id="card-row-1">
                 <h2 id="client-tag"> {{ purchase.fecha |date }}</h2>
-                <h2 id="client-tag">{{ purchase.categoria | capfirst}}</h2>
+                <h2 id="client-tag">{{ purchase.get_category | capfirst}}</h2>
                 <h2 id="client-tag">{{ purchase.proveedor | capfirst}}</h2>
                 <h2 id="client-tag">{{ purchase.cantidad }}</h2>
                 <h2 id="client-tag">{{ purchase.producto | capfirst}}</h2>
@@ -55,13 +55,36 @@
 </div>
 {% else %}
 <div class="info-container">
+    <div id="data-wrapper">
+        <div class="data total-sales">
+            <i class="fa-solid fa-tags"></i>
+            <h1> Compras totales:</h1>
+            <h2>{{total_purchases}}.</h2>
+        </div>
+        <div class="data sales-month">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <h1>Compras este mes:</h1>
+            <h2>{{total_month_purchases}}.</h2>
+        </div>
+        <div class="data total-sales-month">
+            <i class="fa-solid fa-cash-register"></i>
+            <h1>Gastado este mes:</h1>
+            <h2>${{month_total | floatformat:2 | intcomma}}.</h2>
+        </div>
+        <div class="data last-purchase">
+            <i class="fa-solid fa-bell"></i>
+            <h1>Última Compra:</h1>
+            <h2>{{last_purchase.fecha | date}}.</h2>
+        </div>
+    </div>
     <div id="top-forms">
         <form action="." method="get" id="search-form" class="date-form">
             {% csrf_token %}
             <div id="search-label">
-                <i class="fas fa-calendar-alt"></i> Buscar por Fecha:
+                <i class="fas fa-calendar-alt"></i> Buscar por Fecha inicio / Fecha final:
             </div>
-            {{date_form.date_query}}
+            {{date_form.date_query_start }}
+            {{date_form.date_query_end }}
             <input type="submit" value="Buscar" id="search-btn">
         </form>
         <form action="." method="get" id="search-form">
@@ -94,7 +117,7 @@
         <div class="movement-card">
             <div id="card-row-1">
                 <h2 id="client-tag"> {{ purchase.fecha |date }}</h2>
-                <h2 id="client-tag">{{ purchase.categoria | capfirst}}</h2>
+                <h2 id="client-tag">{{ purchase.get_category | capfirst}}</h2>
                 <h2 id="client-tag">{{ purchase.proveedor | capfirst}}</h2>
                 <h2 id="client-tag">{{ purchase.cantidad }}</h2>
                 <h2 id="client-tag">{{ purchase.producto | capfirst}}</h2>
@@ -106,5 +129,4 @@
     {% endfor %}
 </div>
 {% endif %}
-
 {% endblock %}

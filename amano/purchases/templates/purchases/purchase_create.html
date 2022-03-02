@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %} Crear compra{% endblock %}
+
+{% block content %}
+
+<div class="info-container">
+    {% if purchase_form %}
+    <div id="list-title">
+        Crear compra
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div id="form-wrapper">
+            <div id="wrapper">
+                <div class="create-section">
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-user"></i>Proveedor:</h3>
+                        <h2 id="title-client-tag">{{purchase_form.proveedor}}</h2>
+                    </div>
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-plus"></i>Cantidad:</h3>
+                        <h2 id="title-client-tag">{{purchase_form.cantidad}}</h2>
+                    </div>
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-mug-hot"></i>Producto:</h3>
+                        <h2 id="title-client-tag">{{purchase_form.producto}}</h2>
+                    </div>
+                </div>
+                <div class="create-section">
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-clone"></i>Categoría:</h3>
+                        <h2 id="title-client-tag">{{purchase_form.categoria}}</h2>
+                    </div>
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-file"></i>Descripción:
+                        </h3>
+                        <h2 id="title-client-tag">{{purchase_form.descripcion}}</h2>
+                    </div>
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-tag"></i>Precio X Unidad:</h3>
+                        <h2 id="title-client-tag">{{purchase_form.precio_unidad}}</h2>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Crear" id="create-btn">
+        </div>
+    </form>
+    {% else %}
+    <h3>No tiene productos registrados, registre un producto para crear una compra. </h3>
+
+    {% endif %}
+</div>
+
+{% endblock %}

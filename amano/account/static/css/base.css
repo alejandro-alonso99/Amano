@@ -2,8 +2,17 @@
     --main-color: #141a1e;
     --main-lighter-color: #64646400;
     --accent-color: #f9e9ec;
-    --search-btn-color: #2445ff;
+    --blue-accent-color: #0080ff;
     --red-accent-color:#f50004;
+    --green-acent-color: #04c404;
+    --orange-accent-color: #ff964f;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 body{
@@ -14,11 +23,26 @@ body{
 }
 
 #content{
-  margin-left: 10vw;
-  margin-right: 10vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
   padding: 10px 0;
-  width: 80vw;
-  height: 100vh;
+  width: 90vw;
+  height: fit-content;
+}
+
+#login-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  margin: auto;
+  height: 70vh;
+}
+
+#login-title{
+  width: 100%;
+  text-align: center;
+  font-weight: bolder;
 }
 
 a {
@@ -30,23 +54,34 @@ a:visited {
   color: #141a1e;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 /*---------------nav----------------*/
 
 .navbar {
     overflow: hidden;
-    background-color: #232230;
+    background-color: var(--main-color);
     height: fit-content;
     box-shadow: -4px -5px 45px 3px rgba(0, 0, 0, 0.5);
   }
   
   .navbar-items {
-    margin-left: 15vw;
+    margin-left: 10vw;
   }
   
   /* Links inside the navbar */
   .navbar a {
     float: left;
-    font-size: 0.9vw;
+    font-size: 15px;
     font-weight: bold;
     color: white;
     text-align: center;
@@ -56,9 +91,9 @@ a:visited {
   }
   
   #nav-title {
-    width: 15vw;
+    width: 10vw;
     text-align: center;
-    font-size: 0.9vw;
+    font-size: 15px;
     font-weight: 600;
     color: var(--main-color);
     background-color: var(--accent-color);
@@ -76,7 +111,7 @@ a:visited {
   
   /* Dropdown button */
   .dropdown .dropbtn {
-    font-size: 0.9vw;
+    font-size: 15px;
     border: none;
     outline: none;
     color: white;
@@ -97,7 +132,7 @@ a:visited {
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #CACACACA;
+    background-color: var(--main-color);
     border: 1px solid #CACACACA;
     min-width: 160px;
     z-index: 1;
@@ -106,7 +141,7 @@ a:visited {
   /* Links inside the dropdown */
   .dropdown-content a {
     float: none;
-    color: var(--main-color);
+    color: #fff;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -115,7 +150,8 @@ a:visited {
   
   /* Add a grey background color to dropdown links on hover */
   .dropdown-content a:hover {
-    background-color: rgb(177, 177, 177);
+    background-color: #fff;
+    color: var(--main-color);
   }
   
   /* Show the dropdown menu on hover */
@@ -132,14 +168,51 @@ a:visited {
   padding-bottom: 50px;
 }
 
-#wrapper {
+#form-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+}
+
+#recap-form-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+#recap-label{
+  background-color: var(--main-color);
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: normal;
+}
+
+#wrapper {
+  display: flex;
+  width: fit-content;
   height: fit-content;
-  margin: 20px 0px;
-  border: 2px solid rgb(177, 177, 177);
-  box-shadow: rgba(0, 0, 0, 0.4) 1px 5px 15px;
+  margin: 20px 0;
+  border: 1px solid #c4c4c4;
+  box-shadow: 1px 1px 20px gray;
   border-radius: 5px;
   padding: 20px 0;
+}
+
+#detail-wrapper{
+  width: 100%;
+  height: fit-content;
+  margin: 20px auto;
+  border: 1px solid #c4c4c4;
+  box-shadow: 1px 1px 20px gray;
+  border-radius: 5px;
+  padding: 20px 0;
+
 }
 
 
@@ -147,7 +220,7 @@ a:visited {
   padding: 0 30px;
   height: fit-content;
   background-color: transparent;
-  font-size: 0.8vw;
+  font-size: 14px;
   color: #232230;
 }
 
@@ -160,7 +233,7 @@ a:visited {
 
 .movement-card:hover {
   cursor: pointer;
-  background-color: rgb(177, 177, 177);
+  background-color: #c4c4c4;
 }
 
 #card-row-1 {
@@ -175,6 +248,14 @@ a:visited {
 
 #title-client-tag {
   width: 20%;
+  font-size: 15px;
+  font-weight: bolder;
+  text-align: center;
+  padding: 5px 0;
+}
+
+#title-create-tag{
+  width: 200px;
   font-size: 1vw;
   font-weight: bolder;
   text-align: center;
@@ -182,15 +263,16 @@ a:visited {
 }
 
 #client-tag {
+  color: #232230;
   font-weight: normal;
-  font-size: 1vw;
+  font-size: 15px;
   width: 20%;
   text-align: center;
   padding: 5px 0;
 }
 
 #total-tag{
-  font-size: 1vw;
+  font-size: 15px;
   font-weight: normal;
   width: 20%;
   text-align: center;
@@ -199,13 +281,27 @@ a:visited {
 }
 
 #list-title {
+  font-weight: 500;
   text-align: center;
-  font-size: 1vw;
+  font-size: 16px;
   margin: 30px 0;
-  background-color: #fff;
-  color: #232230;
+  background-color:  var(--blue-accent-color);
+  color: #fff;
   padding: 10px;
-  border: 2px solid rgb(177, 177, 177);
+  border: 2px solid var(--blue-accent-color);
+  border-radius: 5px;
+}
+
+
+#list-recap-title {
+  font-weight: 500;
+  text-align: center;
+  font-size: 16px;
+  margin: 10px;
+  background-color:  var(--blue-accent-color);
+  color: #fff;
+  padding: 10px;
+  border: 2px solid var(--blue-accent-color);
   border-radius: 5px;
 }
 
@@ -218,13 +314,12 @@ a:visited {
 }
 
 #search-btn{
-  font-size: 0.9vw;
+  font-size: 15px;
   border: none !important;
   padding: 7px 10px;
-  background-color: var(--search-btn-color);
+  background-color: var(--blue-accent-color);
   border-radius: 5px;
   color: #fff;
-  margin-left: 10px;
   transition: all 0.3s;
   outline: none !important;
 }
@@ -236,20 +331,15 @@ a:visited {
 }
 
 #search-form input{
-  font-size: 0.9vw;
+  font-size: 15px;
   padding: 7px 10px;
   border: 1px solid rgb(177, 177, 177);
   border-radius: 5px;
+  margin-right: 10px;
 }
 
 #search-form input:valid{
-  outline: 1px solid var(--search-btn-color);
-}
-
-i{
-  font-size: 0.9vw;
-  margin-right: 5px;
-  text-align: center;
+  outline: 1px solid var(--blue-accent-color);
 }
 
 .back-link{
@@ -264,8 +354,182 @@ i{
 }
 
 #search-label{
-  font-size: 1vw;
+  font-size: 15px;
 }
 
+#recap-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  
+}
+
+#data-wrapper{
+  width: 100%;
+  display: flex;
+  margin: 20px 0;
+  justify-content: space-between;
+}
+
+.data{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 15%;
+  height: 130px;
+  border-radius: 7px;
+  box-shadow: 1px 1px 20px gray;
+  text-align: left;
+  padding: 20px;
+}
+
+.data i{
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.data h1{
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.data h2{
+  font-size: 18px;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin-left: 10px;
+  color: var(--main-color);
+}
+
+.total-sales{
+  border: 1px solid var(--blue-accent-color);
+  color: var(--blue-accent-color);
+}
+
+.sales-month{
+  border: 1px solid var(--red-accent-color);
+  color: var(--red-accent-color);
+}
+
+.total-sales-month{
+  border: 1px solid var(--orange-accent-color);
+  color: var(--orange-accent-color);
+}
+
+.last-purchase{
+  border: 1px solid var(--green-acent-color);
+  color: var(--green-acent-color);
+}
+
+
+
 /*--------------lists---------------*/
+
+/*-------------details--------------*/
+
+#delete-btn{
+  font-size: 15px;
+  border: none !important;
+  padding: 7px 10px;
+  background-color: var(--red-accent-color);
+  border-radius: 5px;
+  color: #fff;
+  transition: all 0.3s;
+  outline: none !important;
+}
+
+#delete-btn:hover{
+  cursor: pointer;
+  background-color: rgb(177, 177, 177);
+  color: var(--main-color);
+}
+
+/*-------------details--------------*/
+
+/*-------------create---------------*/
+
+.create-section{
+  padding: 20px;
+  margin: 0 30px;
+}
+
+.create-element{
+  padding: 5px;
+}
+
+#wrapper input{
+  width: 200px;
+  outline: none;
+  border: 1px solid #c4c4c4;
+  padding: 5px;
+  transition: all 0.2s;
+  text-align: left;
+  font-size: 15px;
+  border-radius: 3px;
+}
+
+#wrapper input:focus{
+  outline:1px solid var(--blue-accent-color);
+}
+
+#wrapper select:focus{
+  outline:1px solid var(--blue-accent-color);
+}
+
+#wrapper select {
+  width: 200px;
+  outline: none;
+  border: 1px solid rgb(177, 177, 177);
+  padding: 5px;
+  transition: all 0.2s;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 3px;
+}
+
+#wrapper input:valid {
+  background-color: #fff !important;
+  outline:1px solid var(--blue-accent-color);
+}
+
+#wrapper select:valid{
+  outline:1px solid var(--blue-accent-color);
+
+}
+
+#wrapper h3{
+  font-weight: normal;
+  font-size: 17px;
+}
+
+#wrapper i{
+  color: var(--blue-accent-color);
+  margin-right: 5px;
+  font-size: 15px;
+}
+
+#create-btn{
+  width: fit-content;
+  font-size: 15px;
+  border: none !important;
+  padding: 7px 15px;
+  text-transform: uppercase;
+  background-color: var(--blue-accent-color);
+  border-radius: 5px;
+  color: #fff;
+  transition: all 0.3s;
+  outline: none !important;
+}
+
+#create-btn:hover{
+  cursor: pointer;
+  background-color: rgb(177, 177, 177);
+  color: var(--main-color);
+}
+
+/*-------------create---------------*/
 

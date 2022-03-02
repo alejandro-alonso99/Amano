@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Resumenes pendientes{% endblock%}
+
+{% block content %}
+<div id="recap-wrapper">
+    {% if recap_forms %}
+    {% for form,month in recap_forms.items %}
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.month.as_hidden }}
+        <div id="recap-form-wrapper">
+            <h3 id="recap-label">Resumen para el {{month}} / {{current_year}}</h3>
+            <div id="wrapper">
+                <div class="create-section">
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-user"></i>Ingrese Días Trabajados:</h3>
+                        <h2 id="title-client-tag">{{form.dias_trabajados}}</h2>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Crear" id="create-btn">
+        </div>
+    </form>
+    {% endfor %}
+    {% else %}
+
+    <h3> No hay resumenes para crear.</h3>
+    {% endif %}
+</div>
+
+
+{% endblock %}

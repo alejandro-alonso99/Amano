@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} Agregar Producto {% endblock %}
+
+{% block content %}
+
+<div class="info-container">
+    <div id="list-title">
+        Crear producto
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div id="form-wrapper">
+            <div id="wrapper">
+                <div class="create-section">
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-mug-hot"></i>Nombre:</h3>
+                        <h2 id="title-client-tag">{{product_form.nombre}}</h2>
+                    </div>
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-clone"></i>Categoría:</h3>
+                        <h2 id="title-client-tag">{{product_form.categoria}}</h2>
+                    </div>
+
+                </div>
+                <div class="create-section">
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-tag"></i>Precio venta:</h3>
+                        <h2 id="title-client-tag">{{product_form.precio_venta}}</h2>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Crear" id="create-btn">
+    </form>
+</div>
+
+{% endblock %}

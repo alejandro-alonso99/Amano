@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %} Listado de Stock {% endblock %}
+
+{% load humanize %}
+
+{% block content %}
+
+{% if query or date_query_end %}
+<div class="info-container">
+    <p><a href="{% url 'stock:stock_list' %}" id="search-btn" class="back-link"><i
+                class="fas fa-chevron-left"></i>Volver
+            a listado</a></p>
+    {% if query %}
+    <div id="list-title">
+        Filtrando por: "{{query}}"
+    </div>
+    {% endif %}
+    {% if date_query_start %}
+    <div id="list-title">
+        Filtrando entre Fechas: "{{date_query_start}}" y "{{date_query_end}}"
+    </div>
+    {% endif %}
+    {% if product_dict %}
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="title-client-tag">Fecha agregado:</h2>
+            <h2 id="title-client-tag">Categoría:</h2>
+            <h2 id="title-client-tag">Nombre:</h2>
+            <h2 id="title-client-tag">Cantidad:</h2>
+            <h2 id="title-client-tag">Precio venta unidad:</h2>
+        </div>
+    </div>
+    {% endif %}
+    {% for product,cantidad in product_dict.items %}
+    <a href="{{ product.get_absolute_url }}">
+        <div class="movement-card">
+            <div id="card-row-1">
+                <h2 id="client-tag"> {{ product.fecha_agregado |date }}</h2>
+                <h2 id="client-tag">{{ product.categoria | capfirst}}</h2>
+                <h2 id="client-tag">{{ product.nombre | capfirst}}</h2>
+                <h2 id="client-tag">{{ cantidad }}</h2>
+                <h2 id="client-tag">${{ product.precio_venta | floatformat:2 | intcomma}}</h2>
+            </div>
+        </div>
+    </a>
+
+    {% empty %}
+    <div id="list-title">
+        No hay resultados para la búsqueda
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="info-container">
+    <div id="data-wrapper">
+        <div class="data total-sales">
+            <i class="fa-solid fa-tags"></i>
+            <h1>Productos totales:</h1>
+            <h2>{{total_products}}.</h2>
+        </div>
+        <div class="data sales-month">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <h1>Existencias totales:</h1>
+            <h2>{{stock_total}}.</h2>
+        </div>
+        <div class="data total-sales-month">
+            <i class="fa-solid fa-cash-register"></i>
+            <h1>Agregados este mes:</h1>
+            <h2>{{this_month_products}}.</h2>
+        </div>
+        <div class="data last-purchase">
+            <i class="fa-solid fa-bell"></i>
+            <h1>Último agregado:</h1>
+            <h2>{{last_product}}.</h2>
+        </div>
+    </div>
+    <div id="top-forms">
+        <form action="." method="get" id="search-form" class="date-form"
+            onsubmit="return confirm('Confirme para cambiar todos los precios de venta')">
+            {% csrf_token %}
+            <div id="search-label">
+                <i class="fas fa-calendar-alt"></i> Aumentar precios de venta:
+            </div>
+            {{change_price_form.amount }}
+            <input type="submit" value="Modificar" id="search-btn">
+        </form>
+    </div>
+    <div id="top-forms">
+        <form action="." method="get" id="search-form" class="date-form">
+            {% csrf_token %}
+            <div id="search-label">
+                <i class="fas fa-calendar-alt"></i> Buscar por Fecha inicio / Fecha final:
+            </div>
+            {{date_form.date_query_start }}
+            {{date_form.date_query_end }}
+            <input type="submit" value="Buscar" id="search-btn">
+        </form>
+        <form action="." method="get" id="search-form">
+            {% csrf_token %}
+            <div id="search-label">
+                <i class="fas fa-search"></i> Buscar por Nombre:
+            </div>
+            {{search_form.query}}
+            <input type="submit" value="Buscar" id="search-btn">
+        </form>
+
+    </div>
+    <div id="list-title">
+        Listado de productos
+    </div>
+    {% if product_dict %}
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="title-client-tag">Fecha agregado:</h2>
+            <h2 id="title-client-tag">Categoría:</h2>
+            <h2 id="title-client-tag">Nombre:</h2>
+            <h2 id="title-client-tag">Stock:</h2>
+            <h2 id="title-client-tag">Precio venta unidad:</h2>
+        </div>
+    </div>
+    {% endif %}
+    {% for product,cantidad in product_dict.items %}
+    <a href="{{ product.get_absolute_url }}">
+        <div class="movement-card">
+            <div id="card-row-1">
+                <h2 id="client-tag"> {{ product.fecha_agregado |date }}</h2>
+                <h2 id="client-tag">{{ product.categoria | capfirst}}</h2>
+                <h2 id="client-tag">{{ product.nombre | capfirst}}</h2>
+                <h2 id="client-tag">{{ cantidad }}</h2>
+                <h2 id="client-tag">${{ product.precio_venta | floatformat:2 | intcomma}}</h2>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

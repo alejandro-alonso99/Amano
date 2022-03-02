@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/d743caab95.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/026a228444.js" crossorigin="anonymous"></script>
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,21 +21,15 @@
 <body>
     {% if request.get_full_path != '/account/login/' %}
     <div class="navbar">
-        <a href="#home" id="nav-title">Amano </a>
+        <a href="#home" id="nav-title">AMANO</a>
         <div class="navbar-items">
-            <a href="">Resumen</a>
             <div class="dropdown">
-
-                <button class="dropbtn">General
+                <button class="dropbtn">Resumenes
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="">Crear campaña</a>
-                    <a href="">Campañas</a>
-                    <a href="">Campos</a>
-                    <a href="">Agregar campo</a>
-                    <a href="">Lotes</a>
-                    <a href="">Agregar Lote</a>
+                    <a href="{% url 'recap:recap_list' %}">Historial de Resumenes</a>
+                    <a href="{% url 'recap:recap_create' %}">Crear Resumen</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -44,10 +38,8 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="#">Compras Hacienda</a>
-                    <a href="#">Agregar Compra Hacienda</a>
-                    <a href="#">Compras Siembra</a>
-                    <a href="#">Agregar Compra Siembra</a>
+                    <a href="{% url 'purchases:purchases_list' %}">Historial de compras</a>
+                    <a href="{% url 'purchases:purchase_create' %}">Crear compra</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -56,37 +48,18 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="">Ventas Hacienda</a>
-                    <a href="">Agregar Venta Hacienda</a>
-                    <a href="">Ventas Siembra</a>
-                    <a href="">Agregar venta Siembra</a>
+                    <a href="{% url 'sales:sale_list' %}">Listado de ventas</a>
+                    <a href="{% url 'sales:sale_create' %}">Crear venta</a>
                 </div>
             </div>
             <div class="dropdown">
 
-                <button class="dropbtn">Siembra
+                <button class="dropbtn">Stock
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="">Precios promedio</a>
-                    <a href="">Agregar Venta Hacienda</a>
-                    <a href="">Ventas Siembra</a>
-                    <a href="">Agregar venta Siembra</a>
-                </div>
-            </div>
-            <a href="">Gastos</a>
-            <a href="">Stock</a>
-            <div class="dropdown">
-
-                <button class="dropbtn">Fondos
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="">Resumen</a>
-                    <a href="#">Caja</a>
-                    <a href="#">Banco</a>
-                    <a href="#">Cheques Propios</a>
-                    <a href="">Cheques Terceros</a>
+                    <a href="{% url 'stock:stock_list' %}">Listado de Stock</a>
+                    <a href="{% url 'stock:product_create' %}">Crear producto</a>
                 </div>
             </div>
         </div>
@@ -97,10 +70,11 @@
         {% endblock %}
     </div>
 
-    {% block login %}
+    <div id="login-content">
+        {% block login %}
 
-    {% endblock %}
-
+        {% endblock %}
+    </div>
 </body>
 {% endlanguage %}
 
