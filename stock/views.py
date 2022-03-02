@@ -72,8 +72,10 @@ def stock_list(request):
     this_month = datetime.datetime.now().month
     this_month_products = products.filter(fecha_agregado__month= this_month).count()
 
-    last_product = list(products)[-1]
-
+    if products:
+        last_product = list(products)[-1]
+    else: 
+        last_product = ''
     return render(request, 'stock/stock_list.html',{'product_dict': product_dict,
                                                     'total_products':total_products,
                                                     'search_form':search_form,
