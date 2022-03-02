@@ -17,12 +17,12 @@
                         <h3><i class="fa-solid fa-lock"></i>Contraseña:</h3>
                         <h2 id="title-client-tag">{{form.password}}</h2>
                     </div>
+                    {% if form.errors %}
+                    <p>
+                        Usuario o contraseña incorrectos.
+                    </p>
+                    {% endif %}
                 </div>
-                {% if form.errors %}
-                <p>
-                    Usuario o contraseña incorrectos.
-                </p>
-                {% endif %}
             </div>
             <input type="submit" value="Ingresar" id="create-btn">
 
