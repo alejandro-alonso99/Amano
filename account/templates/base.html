@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    {% if request.get_full_path != '/account/login/' %}
+    {% if user.is_authenticated %}
     <div class="navbar">
         <a href="#home" id="nav-title">AMANO</a>
         <div class="navbar-items">
