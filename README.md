@@ -5,7 +5,7 @@ sales and products registration systems, as well as a monthly recap for the busi
 
 ## Preview:
 
-##Sections:
+## Sections:
 
 * **Compras:** This section allows the user to register purchases, it also has a list of all your purchases, they can be filtered by date range and by provider name.
 * **Ventas:** This section allows the user to register Sales, it also has a list of all your sales, they can be filtered by date range and by client name. 
