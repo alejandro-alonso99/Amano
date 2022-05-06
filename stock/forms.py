@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product
+from .models import ManualMove, Product
 
 class ProductForm(forms.ModelForm):
 
@@ -13,3 +13,9 @@ class ChangePriceForm(forms.Form):
 class ChangePriceWithAmountForm(forms.Form):
     ind_amount = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'placeholder':'ej. 900'}))
 
+class ManualmoveForm(forms.ModelForm):
+
+    class Meta:
+        model = ManualMove
+        fields = '__all__'
+        

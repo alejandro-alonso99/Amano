@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Modificar stock a mano {% endblock %}
+
+{% block content %}
+<div class="info-container">
+    {% if products %}
+    <div id="list-title">
+        Modificar Stock
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div id="form-wrapper">
+            <div id="wrapper">
+                <div class="create-section">
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-user"></i>Producto:</h3>
+                        <h2 id="title-client-tag">{{manualmove_form.product}}</h2>
+                    </div>
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-plus"></i>Tipo:</h3>
+                        <h2 id="title-client-tag">{{manualmove_form.tipo}}</h2>
+                    </div>
+                </div>
+                <div class="create-section">
+                    <div class="create-element">
+                        <h3><i class="fa-solid fa-tag"></i>Cantidad:</h3>
+                        <h2 id="title-client-tag">{{manualmove_form.cantidad}}</h2>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Modificar" id="create-btn">
+        </div>
+    </form>
+    {% else %}
+    <h3>No tiene productos registrados, registre un producto para crear una compra. </h3>
+
+    {% endif %}
+</div>
+{% endblock %}

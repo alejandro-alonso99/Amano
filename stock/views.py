@@ -1,7 +1,7 @@
 import datetime
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import ChangePriceForm, ChangePriceWithAmountForm, ProductForm
-from .models import Product
+from .forms import ChangePriceForm, ChangePriceWithAmountForm, ManualmoveForm, ProductForm
+from .models import Product, ManualMove
 from purchases.forms import DateForm, SearchForm
 from django.contrib.postgres.search import SearchVector
 from purchases.models import Purchases
@@ -42,12 +42,21 @@ def stock_list(request):
     for product in products:
         product_purchases = Purchases.objects.filter(producto=product)
         product_sales = Sale.objects.filter(product=product)
+        product_manualmoves = ManualMove.objects.filter(product=product)
+
+        product_manualmove_substract = product_manualmoves.filter(tipo='quitar')
+
+        product_manualmove_add = product_manualmoves.filter(tipo='agregar')
+
+        total_substract = sum(list(map(int, product_manualmove_substract.values_list('cantidad', flat=True))))
+
+        total_add = sum(list(map(int, product_manualmove_add.values_list('cantidad', flat=True))))
 
         total_product_purchases = sum(list(map(int, product_purchases.values_list('cantidad', flat=True))))
 
         total_product_sales = sum(list(map(int, product_sales.values_list('cantidad', flat=True))))
 
-        total_product_stock = total_product_purchases - total_product_sales
+        total_product_stock = total_product_purchases - total_product_sales + total_add - total_substract
 
         product_dict[product] = total_product_stock
     
@@ -152,4 +161,17 @@ def product_detail(request, year, month, day, product):
                                                         'detroy_object_form':destroy_object_form,
                                                         'change_price_form':change_price_form,
                                                         'change_individual_price_form':change_individual_price_form,})                                                
-                                                        
+
+@login_required
+def add_manualmove(request):
+
+    products = Product.objects.all()
+
+    manualmove_form = ManualmoveForm(request.POST or None)
+    
+    if manualmove_form.is_valid():
+        manualmove_form.save()
+
+        return redirect('stock:stock_list')
+
+    return render(request, 'stock/manualmove_create.html',{'manualmove_form':manualmove_form, 'products':products})                                                        
