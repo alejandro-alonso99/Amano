@@ -1,3 +1,4 @@
+from itertools import product
 from django.db import models
 from amano.utils import unique_slug_generator
 from django.urls import reverse
@@ -28,3 +29,14 @@ class Product(models.Model):
     def calculate_stock(self):
         
         pass
+
+class ManualMove(models.Model):
+
+    TYPE_CHOICES = (
+        ('agregar','Agregar'),
+        ('quitar','Quitar'),
+    )
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    tipo = models.CharField(choices=TYPE_CHOICES, max_length=7)
+    cantidad = models.PositiveIntegerField()
