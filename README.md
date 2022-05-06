@@ -4,6 +4,7 @@ Amano is an accounting and stock-managing web app that I created for a local cer
 sales and products registration systems, as well as a monthly recap for the business.
 
 ## Preview:
+![preview](preview.gif)
 
 ## Sections:
 
