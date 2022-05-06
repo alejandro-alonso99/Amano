@@ -22,11 +22,11 @@
     <div class="title-movement-card">
         <div id="card-row-1">
             <h2 id="title-client-tag">Fecha:</h2>
-            <h2 id="title-client-tag">Categoría:</h2>
             <h2 id="title-client-tag">Cliente:</h2>
             <h2 id="title-client-tag">Cantidad:</h2>
             <h2 id="title-client-tag">Producto:</h2>
             <h2 id="title-client-tag">Precio unidad:</h2>
+            <h2 id="title-client-tag">Seña:</h2>
             <h2 id="title-client-tag">Total:</h2>
         </div>
     </div>
@@ -36,11 +36,11 @@
         <div class="movement-card">
             <div id="card-row-1">
                 <h2 id="client-tag"> {{ sale.fecha |date }}</h2>
-                <h2 id="client-tag">{{ sale.get_category | capfirst}}</h2>
                 <h2 id="client-tag">{{ sale.cliente | capfirst}}</h2>
                 <h2 id="client-tag">{{ sale.cantidad }}</h2>
                 <h2 id="client-tag">{{ sale.product | capfirst}}</h2>
                 <h2 id="total-tag">${{ sale.get_unit_price | floatformat:2 | intcomma}}</h2>
+                <h2 id="total-tag">${{ sale.sena | floatformat:2 | intcomma}}</h2>
                 <h2 id="total-tag">${{ sale.calculate_total | floatformat:2 | intcomma}}</h2>
             </div>
         </div>
@@ -102,11 +102,11 @@
     <div class="title-movement-card">
         <div id="card-row-1">
             <h2 id="title-client-tag">Fecha:</h2>
-            <h2 id="title-client-tag">Categoría:</h2>
             <h2 id="title-client-tag">Cliente:</h2>
             <h2 id="title-client-tag">Cantidad:</h2>
             <h2 id="title-client-tag">Producto:</h2>
             <h2 id="title-client-tag">Precio unidad:</h2>
+            <h2 id="title-client-tag">Seña:</h2>
             <h2 id="title-client-tag">Total:</h2>
         </div>
     </div>
@@ -116,11 +116,11 @@
         <div class="movement-card">
             <div id="card-row-1">
                 <h2 id="client-tag"> {{ sale.fecha |date }}</h2>
-                <h2 id="client-tag">{{ sale.get_category | capfirst}}</h2>
                 <h2 id="client-tag">{{ sale.cliente | capfirst}}</h2>
                 <h2 id="client-tag">{{ sale.cantidad }}</h2>
                 <h2 id="client-tag">{{ sale.product | capfirst}}</h2>
                 <h2 id="total-tag">${{ sale.get_unit_price | floatformat:2 | intcomma}}</h2>
+                <h2 id="total-tag">${{ sale.sena | floatformat:2 | intcomma}}</h2>
                 <h2 id="total-tag">${{ sale.calculate_total | floatformat:2 | intcomma}}</h2>
             </div>
         </div>

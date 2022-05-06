@@ -38,6 +38,7 @@
                 <h2 id="title-client-tag">Producto:</h2>
                 <h2 id="title-client-tag">Precio unidad:</h2>
                 <h2 id="title-client-tag">Total:</h2>
+                <h2 id="title-client-tag">Seña:</h2>
             </div>
         </div>
         <div class="title-movement-card">
@@ -46,6 +47,7 @@
                 <h2 id="client-tag">{{ sale.product | capfirst}}</h2>
                 <h2 id="total-tag">${{ sale.get_unit_price | floatformat:2 | intcomma}}</h2>
                 <h2 id="total-tag">${{ sale.calculate_total | floatformat:2 | intcomma}}</h2>
+                <h2 id="total-tag">${{ sale.sena | floatformat:2 | intcomma}}</h2>
             </div>
         </div>
     </div>

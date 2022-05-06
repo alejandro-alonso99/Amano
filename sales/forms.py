@@ -9,6 +9,7 @@ class SaleForm(forms.ModelForm):
     cantidad = forms.IntegerField(label='cantidad',widget=forms.TextInput(attrs={'placeholder':'000000'}))
     localidad = forms.CharField(label='localidad',widget=forms.TextInput(attrs={'placeholder':'ej. Río Cuarto'}))
     descripcion = forms.CharField(label='descripcion',widget=forms.TextInput(attrs={'placeholder':'ej. Platos pintados'}))
+    sena = forms.IntegerField(label='cantidad',widget=forms.TextInput(attrs={'placeholder':'10000'}))
 
     class Meta:
         model = Sale

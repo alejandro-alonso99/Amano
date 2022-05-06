@@ -18,7 +18,8 @@ class Sale(models.Model):
     localidad = models.CharField(max_length=100)
     slug = models.SlugField(max_length=250, unique_for_date='fecha')
     tipo = models.CharField(max_length=100, choices=TYPE_CHOICES, default='pintado')
-
+    sena = models.IntegerField(default=0)
+    
     def __str__(self):
         return str(self.cliente) + ' ' + self.fecha.strftime("%d-%m-%Y")
     
