@@ -1,6 +1,6 @@
 import datetime
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import ChangePriceForm, ProductForm
+from .forms import ChangePriceForm, ChangePriceWithAmountForm, ProductForm
 from .models import Product
 from purchases.forms import DateForm, SearchForm
 from django.contrib.postgres.search import SearchVector
@@ -113,6 +113,7 @@ def product_detail(request, year, month, day, product):
                                                     fecha_agregado__day=day )
 
     change_price_form  = ChangePriceForm()
+    change_individual_price_form = ChangePriceWithAmountForm()
 
     if request.method == 'POST':
         destroy_object_form = DestroyObjectForm(request.POST)
@@ -133,8 +134,22 @@ def product_detail(request, year, month, day, product):
             product.save()
 
             return redirect(product.get_absolute_url())
+    
+    if 'ind_amount' in request.GET:
+        change_individual_price_form = ChangePriceWithAmountForm(request.GET)
+        if change_individual_price_form.is_valid():
+
+            ind_amount = change_individual_price_form.cleaned_data['ind_amount']
+
+            product.precio_venta = ind_amount
+            product.save()
+
+            return redirect(product.get_absolute_url())
+    
+
 
     return render(request, 'stock/product_detail.html',{'product':product,
                                                         'detroy_object_form':destroy_object_form,
-                                                        'change_price_form':change_price_form})                                                
+                                                        'change_price_form':change_price_form,
+                                                        'change_individual_price_form':change_individual_price_form,})                                                
                                                         

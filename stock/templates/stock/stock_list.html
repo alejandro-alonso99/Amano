@@ -77,7 +77,7 @@
     </div>
     <div id="top-forms">
         <form action="." method="get" id="search-form" class="date-form"
-            onsubmit="return confirm('Confirme para cambiar todos los precios de venta')">
+            onsubmit="confirm('Confirme para cambiar todos los precios de venta')">
             {% csrf_token %}
             <div id="search-label">
                 <i class="fas fa-calendar-alt"></i> Aumentar precios de venta:

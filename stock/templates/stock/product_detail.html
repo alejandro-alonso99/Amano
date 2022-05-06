@@ -5,8 +5,18 @@
 <h1 id="list-title">Viendo producto: {{product}}</h1>
 <div class="info-container">
     <div id="top-forms">
+        <form method="post" onsubmit="confirm('Confirme para eliminar el producto')" id="search-form">
+            {% csrf_token %}
+            <div id="search-label">
+                <i class="fa-solid fa-circle-xmark"></i> Eliminar:
+            </div>
+            {{ detroy_object_form.field.as_hidden }}
+            <input type="submit" id="delete-btn" value="Eliminar Producto">
+        </form>
+    </div>
+    <div id="top-forms">
         <form action="." method="get" id="search-form" class="date-form"
-            onsubmit="return confirm('Confirme para cambiar el precio')">
+            onsubmit="confirm('Confirme para cambiar el precio')">
             {% csrf_token %}
             <div id="search-label">
                 <i class="fas fa-calendar-alt"></i>Aumentar precio de venta:
@@ -14,13 +24,14 @@
             {{change_price_form.amount }}
             <input type="submit" value="Modificar" id="search-btn">
         </form>
-        <form method="post" onsubmit="return confirm('Confirme para eliminar el producto')" id="search-form">
+        <form action="." method="get" id="search-form" class="date-form"
+            onsubmit="confirm('Confirme para cambiar el precio de venta')">
             {% csrf_token %}
             <div id="search-label">
-                <i class="fa-solid fa-circle-xmark"></i> Eliminar:
+                <i class="fas fa-calendar-alt"></i> Cambiar precio de venta:
             </div>
-            {{ detroy_object_form.field.as_hidden }}
-            <input type="submit" id="delete-btn" value="Eliminar Producto">
+            {{change_individual_price_form.ind_amount }}
+            <input type="submit" value="Modificar" id="search-btn">
         </form>
     </div>
     <div id="detail-wrapper">
